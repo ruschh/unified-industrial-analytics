@@ -1,86 +1,131 @@
-# Instagram Recommender via Clustering + Reinforcement Learning
+# Projeto EmpresaX — Pipeline de Dados para Custos, Energia e Manufatura
 
-Este projeto aplica técnicas de **Machine Learning** e **Aprendizado por Reforço** para analisar e simular estratégias de engajamento em postagens do Instagram, a partir de um conjunto de dados públicos.
+Este repositório reúne um **projeto completo de ciência de dados**, cobrindo:
 
-## Objetivos
+- **ETL automatizado** (Prefect + DuckDB + Parquet)
 
-- Segmentar postagens com base em métricas comportamentais (clustering)
-- Visualizar padrões de agrupamento em um espaço 2D com PCA
-- Simular estratégias de recomendação com duas abordagens de Q-learning:
-  - **ε-Greedy**
-  - **Thompson Sampling (Distribuição Beta)**
+- **Análise exploratória (EDA)** por domínio
 
-## Tecnologias e Bibliotecas
+- **Modelagem e experimentos de Machine Learning**
 
-- `Python 3.8+`
-- `scikit-learn` – pipeline, KMeans, PCA, métricas
-- `plotly` – visualizações interativas
-- `pandas`, `numpy` – manipulação de dados
-- `random`, `collections` – lógica de simulação
+- **Validação analítica pós-ETL**
 
-## Estrutura do Projeto
+- **Protótipos de deploy (ex.: Streamlit)**
 
+O objetivo é construir uma base robusta para **otimização analítica de custos e planejamento financeiro**, usando dados estruturados de **energia, manufatura e custos**.
+
+## Visão Geral
+
+O projeto é organizado em camadas e módulos:
+
+- Camadas de dados: **Raw → Bronze → Silver → Gold**
+- Módulos principais:
+  - `etl/` – pipeline automatizado de ingestão, transformação e carga
+
+  - `eda/` – análises exploratórias em código “de produção”
+
+  - `notebooks/` – experimentos, documentação viva e testes
+
+  - `validacao/` – validação analítica, consultas de consistência
+
+  - `deploy/` – protótipos de dashboards e aplicações para consumo dos dados
+
+O data warehouse é mantido localmente em **DuckDB** (dentro de `artifacts/`).
+
+
+## Arquitetura Geral
+
+```text
+[Fontes brutas: CSV / planilhas / dumps]
+                  ↓
+         data/raw/ (landing)
+                  ↓
+        BRONZE  → data/bronze/
+                  ↓
+        SILVER  → data/silver/
+                  ↓
+        GOLD    → data/gold/
+                  ↓
+      artifacts/warehouse.duckdb
+                  ↓
+   EDA • Modelagem • Dashboards
 ```
-PIPELINE_MACHINE_LEARNING_PROJECT1.ipynb
-Instagram data.csv
-README.md
+
+## Estrutura de diretórios (visão macro)
+
+```text
+project-root/
+    ├── artifacts/
+    ├── configs/
+    ├── data/
+    ├── deploy/
+    ├── eda/
+    ├── etl/
+    ├── notebooks/
+    ├── reports/
+    ├── validacao/
+    ├── LICENSE
+    ├── README.md
+    ├── requirements.txt
+    └── environment.yml
 ```
 
-## Etapas do Projeto
+---
 
-1. **Pré-processamento com Pipeline**
-   - Normalização (`StandardScaler`)
-   - Redução de dimensionalidade (`PCA`)
-   - Clusterização (`KMeans`)
-2. **Visualização dos clusters**
-   - Cada ponto representa um post
-   - Cores representam os clusters
-3. **Análise dos centroides**
-   - Interpretação dos grupos em termos de métricas reais
-4. **Validação do agrupamento**
-   - Silhouette Score
-   - Método do cotovelo
-5. **Simulação de Aprendizado por Reforço**
-   - Estratégia ε-Greedy
-   - Estratégia Thompson Sampling (distribuição Beta)
-6. **Comparação de estratégias**
-   - Recompensas acumuladas por cluster
-   - Mesma performance com abordagens distintas devido à baixa variância de dados
+---
 
-## Resultados
+---
 
-- Cluster 2 apresenta maior retorno médio em termos de engajamento
-- Ambas as estratégias de reforço convergem para ações similares
-- O modelo é flexível e pode ser adaptado para datasets maiores ou sistemas em produção
+---
 
-## Como Executar
 
-1. Clone o repositório:
+## Criando ambiente virtual
+
 ```bash
-git clone https://github.com/seu-usuario/instagram-reinforcement-ml.git
-```
-
-2. Instale as dependências:
-```bash
+conda create -n env_empresaX python=3.12
+conda activate env_empresaX
 pip install -r requirements.txt
+python -m etl.flow.etl_core
 ```
 
-3. Rode o notebook:
-```bash
-jupyter notebook PIPELINE_MACHINE_LEARNING_PROJECT1.ipynb
-```
+---
 
-## Créditos
+## Tecnologias Principais
 
-Desenvolvido por Flavio R. Rusch   
+- Python, Pandas, PyArrow
 
-## Contato
+- DuckDB  
 
-Se quiser bater um papo, contribuir ou trocar ideias, entre em contato:  
-e-mail: flrrusch@email.com    
-LinkedIn: https://www.linkedin.com/in/flavio-roberto-rusch-9374841a5/
+- Prefect  
 
+- Great Expectations  
 
-```python
+- Parquet  
 
-```
+- Streamlit  
+
+- Plotly
+
+---
+
+## Componentes do Projeto
+
+- **ETL (`etl/`)** – Pipeline modular Raw → Gold  
+
+- **EDA (`eda/` + `notebooks/eda/`)** – Análises descritivas  
+
+- **Modelagem (`notebooks/modelling/`)** – ML, SHAP  
+
+- **Validação (`validacao/` + `notebooks/validation/`)** – Checks pós-ETL  
+
+- **Deploy (`deploy/` + `notebooks/deploy/`)** – Protótipos Streamlit  
+
+---
+
+## Autor
+
+**Flavio Rusch**  
+
+Cientista de Dados | Ph.D. em Física Estatística | Pós-doutorado em neurociência computacional - USP
+
+Foco em modelagem computacional, ETL moderno, análise de dados industriais e redes complexas.

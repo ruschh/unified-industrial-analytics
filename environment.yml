@@ -1,15 +1,39 @@
-name: ds-template
+# How to use: conda env create -f environment.yml
+
+# How to activate: conda activate etl_EmpresaX
+
+name: etl_EmpresaX
 channels:
+  - defaults
   - conda-forge
+
 dependencies:
-  - python=3.11
-  - pip
+  # Base
+  - python=3.10
   - pandas
   - numpy
+  - scipy
   - matplotlib
   - seaborn
-  - scikit-learn
-  - jupyterlab
-  - nodejs
+  - pyyaml
+  - jupyter
+  - ipykernel
+
+  # ETL / Data Engineering
+  - pip
   - pip:
-      - plotly
+      - prefect                 # orquestração do pipeline
+      - duckdb                  # banco de dados analítico local
+      - great_expectations      # checagens de qualidade de dados
+      - pyarrow                 # suporte a Parquet/Arrow
+      - fastparquet             # opcional — escrita eficiente de Parquet
+      - streamlit               # dashboards interativos
+      - sympy                   # análise simbólica e expressões matemáticas
+      - tensorflow              # modelos preditivos e otimização analítica
+      - tqdm                    # barras de progresso
+      - plotly                  # visualizações interativas
+      - scikit-learn            # machine learning clássico
+      - joblib                  # paralelização simples
+      - openpyxl                # leitura de planilhas Excel
+      - faker                   # geração de dados sintéticos
+      - pandera                 # contratos e validação de schema

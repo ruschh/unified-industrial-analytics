@@ -1,22 +1,98 @@
+# ============================================================
+#  GITIGNORE — Projeto completo (ETL, EDA, Deploy, ML)
+# ============================================================
+
+# -----------------------------
+#  Python / bytecode
+# -----------------------------
 __pycache__/
 *.py[cod]
-.venv/
+*$py.class
+
+# -----------------------------
+#  Ambientes virtuais
+# -----------------------------
+.env
+.venv
+env/
 venv/
-.env/
+ENV/
+env.bak/
+.conda/
+
+# -----------------------------
+#  Jupyter Notebooks
+# -----------------------------
 .ipynb_checkpoints/
-.jupyter/lab/workspaces/
+.jupyter/
+
+# -----------------------------
+#  Dados do Projeto
+# -----------------------------
+data/bronze/
+data/silver/
+data/gold/
+data/raw/
+
+# Para versionar o RAW, comente a linha acima.
+# Para versionar *parte* do raw, use exceções, por exemplo:
+# !data/raw/exemplo.csv
+
+# -----------------------------
+#  DuckDB + Parquet
+# -----------------------------
+# Se NÃO quiser versionar o DW local:
+# artifacts/*.duckdb
+
+# Para manter (para reprodutibilidade), deixe assim:
+# (nenhuma regra aqui)
+
+*.parquet
+
+# -----------------------------
+#  Artefatos grandes
+# -----------------------------
+artifacts/*.zip
+artifacts/*.tar
+artifacts/*.7z
+
+# Se quiser manter o synthetic_data.zip, basta remover a linha acima.
+
+# -----------------------------
+#  Logs e arquivos temporários
+# -----------------------------
+logs/
+*.log
+tmp/
+temp/
+*.tmp
+
+# -----------------------------
+#  Build / Distribuição
+# -----------------------------
+build/
+dist/
+*.egg-info/
+
+# -----------------------------
+#  IDEs / Editores
+# -----------------------------
+.vscode/
+.idea/
+*.swp
+*~
+
+# -----------------------------
+#  Sistema Operacional
+# -----------------------------
 .DS_Store
 Thumbs.db
 
-# Dados grandes (não versionar por padrão)
-data/raw/*
-data/external/*
-!data/raw/.gitkeep
-!data/external/.gitkeep
+# -----------------------------
+#  Arquivos sensíveis (caso existam)
+# -----------------------------
+*.key
+*.pem
+*.env.local
+*.secret
 
-# Saídas volumosas
-reports/figures/*
-!reports/figures/.gitkeep
-
-*.log
-.vscode/

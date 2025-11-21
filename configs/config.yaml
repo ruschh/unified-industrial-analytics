@@ -1,0 +1,28 @@
+data_root: "/home/rusch/Área de trabalho/Projeto_Whirpool/Data_Science_Projects/data"
+bronze: "data/bronze"
+silver: "data/silver"
+gold: "data/gold"
+
+
+sources:
+    energy:
+        kind: csv
+        path: "./data_sources/energy/*.csv"
+        datetime_col: "timestamp"
+        tz: "America/Sao_Paulo"
+    manufacturing:
+        kind: csv
+        path: "./data_sources/manuf/*.csv"
+        date_col: "date"
+    costs:
+        kind: csv
+        path: "./data_sources/costs/*.csv"
+        date_col: "ref_month"
+
+
+quality:
+expect_min_rows: 1
+required_cols:
+energy: [timestamp, site_code, line_code, equip_code, kwh]
+manufacturing: [date, site_code, line_code, product_code, units_ok]
+costs: [ref_month, site_code, account_code, amount_br]
