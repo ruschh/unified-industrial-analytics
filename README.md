@@ -1,5 +1,12 @@
 # Projeto EmpresaX — Pipeline de Dados para Custos, Energia e Manufatura
 
+[![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/github/license/ruschh/unified-industrial-analytics)](./LICENSE)
+![Repo size](https://img.shields.io/github/repo-size/ruschh/unified-industrial-analytics)
+![Last commit](https://img.shields.io/github/last-commit/ruschh/unified-industrial-analytics)
+[![CI](https://github.com/ruschh/unified-industrial-analytics/actions/workflows/ci.yml/badge.svg)](https://github.com/ruschh/unified-industrial-analytics/actions/workflows/ci.yml)
+
+
 Este repositório reúne um **projeto completo de ciência de dados**, cobrindo:
 
 - **ETL automatizado** (Prefect + DuckDB + Parquet)
